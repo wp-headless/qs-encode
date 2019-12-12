@@ -6,7 +6,6 @@ steps:
     image: node:alpine
     commands:
       - yarn install
-      - yarn audit
 
   - name: build
     image: node:alpine
