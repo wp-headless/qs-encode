@@ -1,0 +1,62 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: install
+    image: node:alpine
+    commands:
+      - yarn install
+      - yarn audit
+
+  - name: build
+    image: node:alpine
+    commands:
+      - yarn build
+    depends_on:
+      - install
+
+  - name: node-10
+    image: node:10-alpine
+    commands:
+      - yarn test
+    depends_on:
+      - build
+
+  - name: node-11
+    image: node:11-alpine
+    commands:
+      - yarn test
+    depends_on:
+      - build
+
+  - name: node-12
+    image: node:12-alpine
+    commands:
+      - yarn test
+    depends_on:
+      - build
+
+  - name: node-13
+    image: node:13-alpine
+    commands:
+      - yarn test
+    depends_on:
+      - build
+
+  - name: coverage-build
+    image: node:alpine
+    commands:
+      - yarn test
+    depends_on:
+      - node-10
+      - node-11
+      - node-12
+      - node-13
+
+  - name: coverage-report
+    image: plugins/codecov
+    settings:
+      token:
+        from_secret: CODECOV_TOKEN
+    depends_on:
+      - coverage-build
