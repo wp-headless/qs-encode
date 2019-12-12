@@ -1,9 +1,8 @@
 const path = require('path');
 
 module.exports = {
-  rootDir: path.resolve(__dirname, '..'),
-  cacheDirectory: path.resolve(__dirname, '..', '.jest-cache'),
-  coverageDirectory: path.resolve(__dirname, '..', '.jest-coverage'),
+  cacheDirectory: path.resolve(__dirname, '.jest-cache'),
+  coverageDirectory: path.resolve(__dirname, '.jest-coverage'),
   coverageReporters: ['html', 'json', 'lcov', 'text', 'clover'],
   coverageThreshold: {
     global: {

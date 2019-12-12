@@ -18,6 +18,11 @@ test('complex object', () => {
   expect(encode(obj)).toBe('foo=123&bar=456&bam=99999999999999');
 });
 
+test('undefined properties', () => {
+  const obj = { foo: undefined, bar: 456 };
+  expect(encode(obj)).toBe('bar=456');
+});
+
 test('booleans', () => {
   const obj = { foo: true, bar: false };
   expect(encode(obj)).toBe('foo=true&bar=false');
