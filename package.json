@@ -1,0 +1,49 @@
+{
+  "name": "@wp-headless/qs-encode",
+  "private": false,
+  "license": "MIT",
+  "version": "0.1.0",
+  "repository": "https://github.com/wp-headless/qs-encode",
+  "description": "tiny query string encoder",
+  "author": "Andrew McLagan <andrewmclagan@gmail.com>",
+  "keywords": [
+    "qs",
+    "query-string",
+    "encode",
+    "tiny",
+    "micro"
+  ],
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "files": [
+    "README.md",
+    "LICENSE"
+  ],
+  "bugs": {
+    "url": "https://github.com/wp-headless/qs-encode/issues"
+  },
+  "scripts": {
+    "prebuild": "rimraf lib",
+    "test": "yarn build && jest --coverage",
+    "build": "yarn build:cjs && yarn build:esm",
+    "build:cjs": "NODE_ENV=production BABEL_ENV=cjs babel index.js --out-dir ./lib/cjs",
+    "build:esm": "NODE_ENV=production BABEL_ENV=esm babel index.js --out-dir ./lib/esm"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@wp-headless/babel-preset": "^0.1.0",
+    "babel-jest": "^24.9.0",
+    "codecov": "^3.6.1",
+    "expect": "^21.0.0",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
+    "rimraf": "^3.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }  
+}
